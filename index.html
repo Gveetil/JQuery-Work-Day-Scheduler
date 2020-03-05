@@ -16,9 +16,19 @@
 
 <body>
   <header class="jumbotron">
-    <h1 class="display-3">Work Day Scheduler</h1>
-    <p class="lead">A simple calendar app for scheduling your work day</p>
-    <p id="currentDay" class="lead"></p>
+    <div class="container">
+      <h1 class="display-3 col-12">Work Day Scheduler</h1>
+      <p class="lead col-12">A simple calendar app for scheduling your work day</p>
+      <div class="row no-gutters">
+        <div class="col-2 col-md-3 col-lg-4 p-0 text-right">
+          <button class="btn btn-primary btn-rounded" id="previous"><i class='fa fa-chevron-left'></i></button>
+        </div>
+        <div id="currentDay" class="lead col-8 col-md-6 col-lg-4 pt-sm-2"></div>
+        <div class=" col-2 col-md-3 col-lg-4 p-0 text-left">
+          <button class="btn btn-primary btn-rounded" id="next"><i class='fa fa-chevron-right'></i></button>
+        </div>
+      </div>
+    </div>
   </header>
   <div class="container" id="timeblockContainer">
     <!-- Timeblocks go here -->
