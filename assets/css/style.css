@@ -65,7 +65,15 @@ textarea{
   color: white;
 }
 
-.saveBtn i:hover {
+.saveBtn i{
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.saveBtn i:hover,.saveBtn i:active{
   font-size: 20px;
+  color: black;
   transition: all .3s ease-in-out;
 }
