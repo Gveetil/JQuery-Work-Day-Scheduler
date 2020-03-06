@@ -2,7 +2,7 @@
 
 // the format used to display the date and time intervals
 const dayDisplayFormat = "dddd, MMMM Do YYYY";
-const hourDisplayFormat = "ha";
+const hourDisplayFormat = "hA";
 
 $(document).ready(function () {
     // UI Elements referenced by this code
@@ -17,7 +17,6 @@ $(document).ready(function () {
     var selectedDate = moment().startOf('day');
     var hourUpdateTimeout = null;
     var taskHelper = new WorkdayTaskHelper();
-    var lastChangedRow = "";
 
     /** Renders the scheduler user interface */
     function renderScheduler() {
@@ -36,7 +35,6 @@ $(document).ready(function () {
             appendTimeBlock(taskTime, description, currentTime);
             taskTime.add(1, 'hours');
         }
-        lastChangedRow = "";
         // Add change event on text area to keep track of changes
         $("textarea").on("change", descriptionChanged);
     }
@@ -157,13 +155,15 @@ $(document).ready(function () {
         var unsavedRows = $("textarea").filter("[data-isupdated='1']");
         // Check if unsaved rows exist
         if (unsavedRows.length > 0) {
-            var message = "";
-            // make a list of unsaved rows to alert the user
+            var message = "You have unsaved changes in the below time block(s):\n";
+            // make a list of unsaved rows 
             unsavedRows.each(function () {
-                message += $(this).parents(".time-block").find(".hour").text() + "\n";
+                message += $(this).parents(".time-block").find(".hour").text() + ", ";
             });
-            alert("Please save the data for:\n" + message);
-            return false;
+            message = message.trim().slice(0, -1);
+            message += "\nDo you wish to proceed without saving?";
+            // Return user's response
+            return (confirm(message));
         }
         return true;
     }
@@ -187,8 +187,6 @@ $(document).ready(function () {
         // Update textbox data attributes
         taskDescriptionEl.attr("data-savedvalue", taskDescription);
         taskDescriptionEl.attr("data-isupdated", "0");
-        console.log(taskDescriptionEl.attr("data-savedvalue"));
-        console.log(taskDescriptionEl.attr("data-isupdated"));
     }
 
     // render scheduler when the screen is loaded up
