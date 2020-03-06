@@ -62,6 +62,7 @@ textarea{
   color: white;
 }
 
+/* styling to center the save icon in its parent div */
 .saveBtn i{
   position: absolute;
   top: 50%;
@@ -69,6 +70,7 @@ textarea{
   transform: translate(-50%, -50%);
 }
 
+ /* set the background color of save icon on select / hover */
 .saveBtn i:hover,.saveBtn i:active{
   font-size: 20px;
   color: black;

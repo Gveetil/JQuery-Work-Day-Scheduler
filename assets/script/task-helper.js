@@ -1,7 +1,7 @@
 /** Key used to access the local storage */
 const localStorageKey = "scheduledWorkdayTasks";
 
-/** This class represents a task scheduled on a workday */
+/** This class represents a task scheduled on a work day */
 class WorkdayTask {
     /**
     * Initialize the workday task object 
@@ -29,9 +29,9 @@ class WorkdayTaskHelper {
     /**
      * This method parses date time strings and converts them into moment objects
      * It is used while reading data from local storage
-     * @param {string} key key being parsed -- workday or description
-     * @param {string} value value being parsed
-     * @returns {object} moment object in case of workdays, string otherwise
+     * @param {string} key key being parsed
+     * @param {object} value value being parsed
+     * @returns {object} moment object in case of workdays, the value object otherwise
      */
     parseWorkday(key, value) {
         if (key == "workday")
