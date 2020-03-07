@@ -27,4 +27,5 @@ When the scheduler is opened, it displays the current date at the top of the cal
 * The user can choose cancel and save changes individually using the save button.
 
 ## Known Issues / Limitations
-The work day scheduler currently assumes a standard 9-5 work day for all days of the week including saturday and sunday. 
+* The work day scheduler currently assumes a standard 9-5 work day for all days of the week including saturday and sunday. 
+* The current hour time block refresh is limited to the present day's time blocks and will not work on future dates / overnight.
