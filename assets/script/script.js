@@ -35,6 +35,11 @@ $(document).ready(function () {
             appendTimeBlock(taskTime, description, currentTime);
             taskTime.add(1, 'hours');
         }
+        // schedule screen update on first hour of the day if current time is before business hours start
+        if (currentTime.hour() < startBusinessHours &&
+            selectedDate.isSame(currentTime, 'date')) {
+            scheduleHourUpdate(currentTime);
+        }
         // Add change event on text area to keep track of changes
         $("textarea").on("change", descriptionChanged);
     }
@@ -62,13 +67,15 @@ $(document).ready(function () {
         // Set description styling based on hour
         if (taskTime.isSame(currentTime, 'hour')) {
             columnDescription.addClass("present");
+            // schedule update on current hour
             scheduleHourUpdate(currentTime);
         }
         else if (currentTime.isAfter(taskTime)) {
             columnDescription.addClass("past");
         }
-        else
+        else {
             columnDescription.addClass("future");
+        }
         row.append(columnDescription);
         // Save button column
         var columnSave = $("<div class='col-2 col-md-1 saveBtn'>");
@@ -82,7 +89,11 @@ $(document).ready(function () {
      * @param {moment} currentTime the present date time 
      */
     function scheduleHourUpdate(currentTime) {
-        var nextHour = moment(currentTime).hour(currentTime.hour() + 1).startOf('hour');
+        var hoursToWait = 1;
+        // By default update screen every hour - except when it's before business hours start
+        if (currentTime.hour() < startBusinessHours)
+            hoursToWait = startBusinessHours - currentTime.hour();
+        var nextHour = moment(currentTime).hour(currentTime.hour() + hoursToWait).startOf('hour');
         var timeoutInterval = nextHour.diff(currentTime, 'milliseconds');
         clearUpdateTimeouts();
         hourUpdateTimeout = setTimeout(updateCurrentHour, timeoutInterval);
