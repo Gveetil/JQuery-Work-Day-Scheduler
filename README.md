@@ -1,6 +1,6 @@
 # Work Day Scheduler
 
- [![Image of Work Day Scheduler Icon](assets/images/readme_workday_scheduler_icon.jpg "Open the Work Day Scheduler.")](https://gveetil.github.io/JQuery-Work-Day-Scheduler/)
+Application Link: [https://gveetil.github.io/JQuery-Work-Day-Scheduler/](https://gveetil.github.io/JQuery-Work-Day-Scheduler/)
 
 ## Description
 The work day scheduler is a daily planner that helps users manage their time effectively. Users have the option of saving important events for each work hour of the day, they can then view the saved events at a later point. This application uses javascript with jQuery to achieve this.
